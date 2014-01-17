@@ -1,4 +1,4 @@
-
+#coding=UTF-8
 __author__ = 'maciej'
 
 from plp import *
@@ -27,27 +27,27 @@ class Stemmer:
                 toAdd = ""
                 for s in plp.forms(i):
                     if len(s) > 0:
+                        if i == 16777312:
+                            print 'found abdominalnej'
                         a = self.substr(s, form)
                         toRemove = s[len(a) : len(s)]
                         toAdd = form[len(a) : len(form)]
-                        #najbardziej pasujace slowo, a jak wiecej niz jedno to po count z formEntry
                         keys.append(self.reverse(s))
-                        print toRemove + " " + toAdd
+                        print s + " " + toRemove + " " + toAdd
                         a = unicode(toRemove).encode('utf-8')
                         b = unicode(toAdd).encode('utf-8')
                         values.append((a, b))
-                index += 1
+                index += 1                        #najbardziej pasujace slowo, a jak wiecej niz jedno to po count z formEntry
+
             old = plp.bform(i)
-        fmt = '<ss'
+        fmt = '<15s15s15'
         self.atergoTrie = marisa_trie.RecordTrie(fmt, zip(keys, values))
-        print 'aaa' #u'mojckudba'
 
     def findBasicForm(self, strangeForm):
         similarWords = self.findSimilarWords(strangeForm)
         howManyForms = dict()
         for word in similarWords:
             form = self.atergoTrie[word]
-            print form
             if howManyForms.has_key(form[0]):
                 howManyForms[form[0]] += 1
             else:
@@ -58,13 +58,10 @@ class Stemmer:
             if howManyForms[key] > max:
                 max = howManyForms[key]
                 maxForm = key
-        print strangeForm + ' ' + unicode(maxForm[0]) + ' ' + unicode(maxForm[1].encode('utf-8'))
-        print maxForm[1].decode('utf-8')
-        f = file('maxform.txt', 'w')
-        f.write(maxForm[1])
-        print str(unicode(maxForm[1].decode('utf-8')))
 
-        return strangeForm[:len(strangeForm) - len(maxForm[0])] + unicode(maxForm[1].encode('utf-8'))
+        print maxForm[0] + ' ' + maxForm[1]
+        unicode(maxForm[1]).strip()
+        return strangeForm[:len(strangeForm) - len(maxForm[0])] + maxForm[1]
 
     def substr(self, s1, s2):
         i = 0
@@ -94,7 +91,6 @@ class Stemmer:
         while(index < len(strangeForm) and self.atergoTrie.has_keys_with_prefix( \
                 reversedStrangeForm[:index])):
             index += 1
-        print reversedStrangeForm[:index-1]
         return self.atergoTrie.keys(reversedStrangeForm[:index-1])
 
 
@@ -104,4 +100,5 @@ plp._init()
 
 s = Stemmer(plp)
 s.prepare()
-print unicode(s.findBasicForm(u'babakusa'))
+print '\n###################\n'
+print s.findBasicForm(u'turków')
