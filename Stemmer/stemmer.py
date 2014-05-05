@@ -3,21 +3,32 @@ __author__ = 'maciej'
 
 from plp import *
 import marisa_trie
-import string
+import sys
+import codecs
 
 class Stemmer:
     def __init__(self, plp):
         self.plp = plp
 
-    def prepare(self):
+    def writeTrieToFile(self, filename):
+        self.atergoTrie.save(filename)
+
+    def loadFromFile(self, filename):
+        fmt = '<15s15s15'
+        self.atergoTrie = marisa_trie.RecordTrie(fmt)
+        self.atergoTrie.load(filename)
+
+    def prepare(self, onlyNouns):
         old = ""
         index = 0
         keys = []
         values = []
-        print 'Form ToAdd ToRemove Changed'
         for i in range(16777231,18663982):
-            if index == 10:
-                break
+            if onlyNouns == True:
+                if self.plp.label(i)[0] != u'A':
+                    continue
+#            if index == 10:
+#                break
             if self.isBadValue(i):
                 continue
             form = self.plp.bform(i)
@@ -25,15 +36,12 @@ class Stemmer:
             if old != form:
                 toRemove = ""
                 toAdd = ""
-                for s in plp.forms(i):
+                for s in self.plp.forms(i):
                     if len(s) > 0:
-                        if i == 16777312:
-                            print 'found abdominalnej'
                         a = self.substr(s, form)
                         toRemove = s[len(a) : len(s)]
                         toAdd = form[len(a) : len(form)]
                         keys.append(self.reverse(s))
-                        print s + " " + toRemove + " " + toAdd
                         a = unicode(toRemove).encode('utf-8')
                         b = unicode(toAdd).encode('utf-8')
                         values.append((a, b))
@@ -59,9 +67,9 @@ class Stemmer:
                 max = howManyForms[key]
                 maxForm = key
 
-        print maxForm[0] + ' ' + maxForm[1]
-        unicode(maxForm[1]).strip()
-        return strangeForm[:len(strangeForm) - len(maxForm[0])] + maxForm[1]
+        maxForm0 = maxForm[0].split('\x00')[0].decode('utf-8')
+        maxForm1 = maxForm[1].split('\x00')[0].decode('utf-8')
+        return strangeForm[:len(strangeForm) - len(maxForm0)] + maxForm1
 
     def substr(self, s1, s2):
         i = 0
@@ -99,6 +107,27 @@ plp._init()
 
 
 s = Stemmer(plp)
-s.prepare()
+#s.prepare(True)
+#s.writeTrieToFile('trie_only_nouns.bak')
+s.loadFromFile('trie.bak')
 print '\n###################\n'
-print s.findBasicForm(u'turków')
+UTF8Writer = codecs.getwriter('utf8')
+sys.stdout = UTF8Writer(sys.stdout)
+
+f = codecs.open('test.txt', 'r', 'utf-8')
+ilePoprawnych = 0
+ileWszystkich = 0
+for line in f:
+    ileWszystkich += 1
+    a = line.split(',')
+    basci_form = s.findBasicForm(unicode(a[0]))
+    x = unicode(a[1])
+    if basci_form != a[1].strip():
+        print (a[0] + "::" + basci_form + "::" + a[1])
+    else:
+        ilePoprawnych += 1
+
+print "Score\n" + str(ileWszystkich) + "::" + str(ilePoprawnych)
+
+while True:
+    print s.findBasicForm(unicode(raw_input(), 'utf-8'))
