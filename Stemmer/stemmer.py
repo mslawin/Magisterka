@@ -14,13 +14,24 @@ class Stemmer:
         if filename:
             self.atergo_trie = marisa_trie.RecordTrie(self.fmt)
             self.atergo_trie.load(filename)
+
         elif word_type:
             self.atergo_trie = marisa_trie.RecordTrie(self.fmt, self.prepare(word_type))
 
     def write_trie_to_file(self, filename):
+        """
+        Saves backup of trie structure to a file
+        :param filename: filename where trie will be stored
+        :return: None
+        """
         self.atergo_trie.save(filename)
 
     def prepare(self, word_type):
+        """
+        Generates trie structure containing all words from clp
+        :param word_type: part of speech of which kind read words from clp data
+        :return: None
+        """
         old = ""
         index = 0
         keys = []
@@ -48,6 +59,11 @@ class Stemmer:
         return zip(keys, values)
 
     def find_basic_form(self, strange_form):
+        """
+        Method finds basic form for given inflectional form
+        :param strange_form: inflectional form of word
+        :return: basic form of given word
+        """
         similar_words = self.find_similar_words(strange_form)
         how_many_forms = dict()
         for word in similar_words:
@@ -68,6 +84,11 @@ class Stemmer:
         return strange_form[:len(strange_form) - len(max_form0)] + max_form1
 
     def find_similar_words(self, strange_form):
+        """
+        Method finds words in trie structure which has longest coomon part with given word
+        :param strange_form: inflectional form of given word
+        :return: list of words which has longest common part of given word
+        """
         reversed_strange_form = Util.reverse(strange_form)
         index = 0
         while index < len(strange_form) and self.atergo_trie.has_keys_with_prefix(unicode(reversed_strange_form[:index])):
