@@ -4,6 +4,8 @@ from utils import Util
 __author__ = 'mslawin'
 
 import marisa_trie
+import collections
+import operator
 
 
 class Stemmer:
@@ -66,22 +68,24 @@ class Stemmer:
         """
         similar_words = self.find_similar_words(strange_form)
         how_many_forms = dict()
+        word_labels = dict()
         for word in similar_words:
             form = self.atergo_trie[word]
             if form[0] in how_many_forms:
                 how_many_forms[form[0]] += 1
             else:
                 how_many_forms[form[0]] = 1
-        max_forms = 0
-        max_form = ('', '')
-        for key in how_many_forms.keys():
-            if how_many_forms[key] > max_forms:
-                max_forms = how_many_forms[key]
-                max_form = key
+            if not form[0] in word_labels:
+                word_labels[form[0]] = []
+            word_labels[form[0]].append(Util.reverse(word))
+        max_form = max(how_many_forms.iteritems(), key=operator.itemgetter(1))[0]
 
         max_form0 = max_form[0].split('\x00')[0].decode('utf-8')
         max_form1 = max_form[1].split('\x00')[0].decode('utf-8')
-        return strange_form[:len(strange_form) - len(max_form0)] + max_form1
+        result = collections.namedtuple('result', ['basic_form', 'word_labels'])
+        result.basic_form = strange_form[:len(strange_form) - len(max_form0)] + max_form1
+        result.word_labels = word_labels[max_form]
+        return result
 
     def find_similar_words(self, strange_form):
         """
@@ -91,6 +95,26 @@ class Stemmer:
         """
         reversed_strange_form = Util.reverse(strange_form)
         index = 0
-        while index < len(strange_form) and self.atergo_trie.has_keys_with_prefix(unicode(reversed_strange_form[:index])):
+        while index < len(strange_form) and \
+                self.atergo_trie.has_keys_with_prefix(unicode(reversed_strange_form[:index])):
             index += 1
         return self.atergo_trie.keys(unicode(reversed_strange_form[:index - 1]))
+
+    def find_labels(self, word_labels):
+        labels = []
+        idss = dict()
+        for word_label in word_labels:
+            max_label = dict()
+            for word in word_label:
+                ids = self.plp.rec(unicode(word))
+                for id in ids:
+                    l = self.plp.label(id)
+                    if l in max_label:
+                        max_label[l] += 1
+                    else:
+                        max_label[l] = 1
+                    idss[l] = id
+            labels.append(max(max_label.iteritems(), key=operator.itemgetter(1))[0])
+        r = collections.namedtuple('r', ['x', 'y'])
+        r.x = labels
+        return labels

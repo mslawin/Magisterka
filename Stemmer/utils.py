@@ -1,3 +1,4 @@
+# coding=utf-8
 __author__ = 'mslawin'
 
 
@@ -78,9 +79,13 @@ class Util:
         """
         ending = ending.replace('-', '')
         for i in reversed(range(city.__len__())):
-            if city[i] == ending[0]:
+            if city[i] == ending[0] or Util.isNToN(city[i], ending[0]):
                 return city[:i] + ending
         return city[:city.__len__()-1] + ending
+
+    @staticmethod
+    def isNToN(s1, s2):
+        return (s1 == u'n' and s2 == u'ń') or (s1 == u'ń' and s2 == u'n')
 
 
 class WordsType:
