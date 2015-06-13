@@ -1,5 +1,4 @@
 Dopełniacz;Mianownik;Wynik Stemmera
-wic;;wica
 Radzikowic;Radzikowice;Radzikowica
 Szczecina;Szczecin;Szczecina
 Krzczonowa Drugiego;Krzczonów Drugi;Krzczonowa Drugi

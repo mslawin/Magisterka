@@ -85,7 +85,8 @@ class Util:
 
     @staticmethod
     def isNToN(s1, s2):
-        return (s1 == u'n' and s2 == u'ń') or (s1 == u'ń' and s2 == u'n')
+        return (s1 == u'n' and s2 == u'ń') or (s1 == u'ń' and s2 == u'n') or (s1 == u'ś' and s2 == u's') or \
+               (s1 == u's' and s2 == u'ś')
 
 
 class WordsType:

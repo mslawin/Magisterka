@@ -24,12 +24,13 @@ class Rules:
             for city in cities_file:
                 if not city.__contains__(' ') and not city.__contains__('-'):
                     if city.split(';')[1].strip().endswith(rule.m):
-                        city_d = city.split(';')[1].strip().replace(rule.m, rule.d)
+                        li = city.split(';')[1].strip().rsplit(rule.m, 1)
+                        city_d = rule.d.join(li)
                         rule_count_total += 1
                         if city_d == city.split(';')[0]:
                             rule_count_correct += 1
                         else:
-                            wrong_cities.append(city)
+                            # wrong_cities.append(city)
                             print (city_d + ' ' + city.split(';')[0] + ' ' + city.split(';')[1].strip())
                     else:
                         wrong_cities.append(city)

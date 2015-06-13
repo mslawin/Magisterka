@@ -32,11 +32,11 @@ class TestPreparer:
             basic_form = line.split(';')[0]
             ending = line.split(';')[1] #.replace('-', ' -').replace('  ', ' ').strip()
             if not basic_form.__contains__(' ') and not basic_form.__contains__('-'):
-                if self.types.__contains__(line.strip().split(';')[2]):
-                    if basic_form != '' and ending != '':
-                        form = Util.get_form(basic_form, ending)
-                        if not city_map.__contains__(basic_form) or city_map[basic_form] != form:
-                            city_map[basic_form] = form
+                # if self.types.__contains__(line.strip().split(';')[2]):
+                if basic_form != '' and ending != '':
+                    form = Util.get_form(basic_form, ending)
+                    if not city_map.__contains__(basic_form) or city_map[basic_form] != form:
+                        city_map[basic_form] = form
         return city_map
 
     def get_forms(self, cities):
@@ -141,9 +141,9 @@ class Test:
 
     def prepare_cities(self):
         print 'Preparing cities'
-        res_file = codecs.open('../data/cities_wies_miasto_kolonia_osada.csv', 'w', 'utf-8')
+        res_file = codecs.open('../data/cities.csv', 'w', 'utf-8')
         res_file.write(u'Dopełniacz;Mianownik\n')
         for k, v in self.cities.iteritems():
             res_file.write(v + ';' + k + '\n')
 
-Test().test()
+Test().prepare_cities()

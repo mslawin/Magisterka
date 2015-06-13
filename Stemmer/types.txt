@@ -1,0 +1,27 @@
+część kolonii
+część miasta
+część osady
+część przysiółka
+część wsi
+gajówka
+kolonia
+kolonia kolonii
+kolonia osady
+kolonia wsi
+leśniczówka
+miasto
+osada
+osada kolejowa
+osada kolonii
+osada leśna
+osada leśna wsi
+osada osady
+osada wsi
+osiedle
+osiedle wsi
+przysiółek
+przysiółek kolonii
+przysiółek osady
+przysiółek wsi
+schronisko turystyczne
+wieś

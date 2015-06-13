@@ -1,0 +1,57 @@
+Dopełniacz;Mianownik;Wynik Stemmera
+Adamowa;Adamowo;Adamowa;ADAAA 
+Abramowic Prywatnych;Abramowice Prywatne;Abramowica Prywatne;ADACABB CAB 
+Adamowic;Adamowice;Adamowica;ADACABB 
+Adolfowa;Adolfowo;Adolfowa;ADACCAA 
+Adamy;Adama;Adam;ACAAAAA 
+Adamowa Górnego;Adamów Górny;Adamowa Górny;ADAAA CAB 
+Adamowa-Kolonii;Adamów-Kolonia;Adamowa-Kolonia;ADAAA ADACBAA 
+Adolfina;Adolfin;Adolfina;ADAAA 
+Adamczychy;Adamczycha;Adamczych;ACAAAB 
+Abramowa;Abramów;Abramowa;ADAAA 
+Abramowic Kościelnych;Abramowice Kościelne;Abramowica Kościelny;ADACABB CAB 
+Adamki;Adamka;Adamek;AAADBA 
+Abramowcy;Abramowce;Abramowiec;AAACBA 
+Adamówka;Adamówek;Adamówka;ADAB 
+Abramowa-Kolonii;Abramów-Kolonia;Abramowa-Kolonia;ADAAA ADACBAA 
+Agnieszkowa;Agnieszkowo;Agnieszkowa;CAB 
+Adamczowic;Adamczowice;Adamczowica;ADACABB 
+Abramów;Abramy;Abram;ACAAAAA 
+Jadamczyków;Jadamczyki;Jadamczyk;ABAC 
+Adamowa;Adamów;Adamowa;ADAAA 
+Kolonii Adamówka;Kolonia Adamówek;Kolonia Adamówka;ADACBAA ADAB 
+Abramowic;Abramowice;Abramowica;ADACABB 
+Adampola;Adampol;Adampole;AEBAA 
+Adamowa Rososkiego;Adamów Rososki;Adamowa Rososki;ADAAA CBA 
+Osiedla Kowalczyka;Osiedle Kowalczyka;Osiedle Kowalczyk;BDA ABAC 
+Adaminowa;Adaminów;Adaminowa;ADAAA 
+Adamkowa;Adamkowo;Adamkowa;CAB 
+Adamowa Drwalewskiego;Adamów Drwalewski;Adamowa Drwalewski;ADAAA CBA 
+Adamów;Adamy;Adam;ACAAAAA 
+Adamowa-Zastawy;Adamowo-Zastawa;Adamowa-Zastaw;ADAAA ACAAAAA 
+Osiedla Strugi;Osiedle Struga;Osiedle Strug;BDA ADAB 
+Kolonii Agnieszki;Kolonia Agnieszki;Kolonia Agnieszka;ADACBAA ADAB 
+Adelajdy;Adelajda;Adelajd;ACAAAAA 
+Adamowa-Wsi;Adamów-Wieś;Adamowa-Ws;ADAAA AAADAA 
+Adolfinowa;Adolfinów;Adolfinowa;ADAAA 
+Kadzidłowej-Adamowa;Kadzidłowa-Adamów;Kadzidłowa-Adamowa;ADACCAA ADAAA 
+Adamus;Adamusy;Adamus;ACAABAA 
+Abrama;Abram;Abrama;ADAAA 
+Adelina;Adelin;Adelina;ADAAA 
+Achrymowiec;Achrymowce;Achrymowiec;AAACBA 
+Kolonii Adamczowic;Kolonia Adamczowice;Kolonia Adamczowica;ADACBAA ADACABB 
+Adamowych Łączek;Adamowe Łączki;Adamowy Łączka;CAB ADAB 
+Adamina;Adamin;Adamina;ADAAA 
+Adamek;Adamki;Adamka;ADAB 
+Adaminowa;Adaminowo;Adaminowa;ADAAA 
+Adolfowa;Adolfów;Adolfowa;ADACCAA 
+Agnieszczyna;Agnieszczyn;Agnieszczyna;ADAAA 
+Adamowej Góry;Adamowa Góra;Adamowa Gór;ADACCAA ACAAAAA 
+Adamowa-Parceli;Adamów-Parcel;Adamowa-Parcela;ADAAA ADACBABA 
+Adamowa-Osiedla;Adamowo-Osiedle;Adamowa-Osiedle;ADAAA BDA 
+Adolfina-Bachorzy;Adolfin-Bachorza;Adolfina-Bachor;ADAAA AAACAAAB 
+Adamczykowej Roli;Adamczykowa Rola;Adamczykowa Rol;CAB ACACAA 
+Adelinowa;Adelinów;Adelinowa;ADAAA 
+Osiedla Adama Asnyka;Osiedle Adama Asnyka;Osiedle Adama Asnyk;BDA ADAAA ACABBA 
+Liczba miejscowości;Liczba niepoprawnie rozpoznanych;Liczba poprawnie rozpoznanych
+72;54;18
