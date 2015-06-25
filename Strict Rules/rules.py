@@ -20,7 +20,7 @@ class Rules:
 
     def process_rules(self):
         for rule in self.rules:
-            cities_file = codecs.open('../data/wrong_cities.csv', 'r', 'utf-8')
+            cities_file = codecs.open('../data/cities.csv', 'r', 'utf-8')
             wrong_cities = []
             rule_count_total = 0
             rule_count_correct = 0
@@ -32,15 +32,17 @@ class Rules:
                         rule_count_total += 1
                         if city_d == city.split(';')[0]:
                             rule_count_correct += 1
+                        else:
+                            print(city_d, city.split(';')[0], city.split(';')[1])
                     else:
                         wrong_cities.append(city)
             print('Liczba miast z regula ' + rule.m + ' -> ' + rule.d + ': ' + str(rule_count_total) + ', poprawnych: ' +
                   str(rule_count_correct) + '\n')
             cities_file.close()
-            wrong_cities_file = codecs.open('../data/wrong_cities.csv', 'w', 'utf-8')
-            for wrong_city in wrong_cities:
-                wrong_cities_file.write(wrong_city.split(';')[0] + ';' + wrong_city.split(';')[1])
-            wrong_cities_file.close()
+            # wrong_cities_file = codecs.open('../data/wrong_cities.csv', 'w', 'utf-8')
+            # for wrong_city in wrong_cities:
+            #     wrong_cities_file.write(wrong_city.split(';')[0] + ';' + wrong_city.split(';')[1])
+            # wrong_cities_file.close()
 
     def process_rules_multi_parts(self):
         cities_file = codecs.open('../data/cities_multiword.csv', 'r', 'utf-8')
@@ -78,4 +80,4 @@ class Rules:
 
 r = Rules()
 r.prepare_rules()
-r.process_rules_multiword()
+r.process_rules()
